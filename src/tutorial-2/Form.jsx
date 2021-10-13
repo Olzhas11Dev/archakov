@@ -9,12 +9,12 @@ function Form() {
     }
     let { name, password } = infoData //destructuring
 
-    if (name === "" || password === "") {
+    if (!name || !password) {
       alert("please add the value")
     } else {
       console.log(name, password)
 
-      // Clean them again
+      //Clean them again
       event.target[0].value = ""
       event.target[1].value = ""
     }
