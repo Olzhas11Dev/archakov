@@ -1,32 +1,33 @@
-import { useState, useEffect } from "react";
-import Feedback from "./components/Feedback";
-import Form from "./components/Form";
-import { AppContext } from "./context";
+import { useState, useEffect } from 'react';
+import Feedback from './components/Feedback';
+import Form from './components/Form';
+import { AppContext } from './context';
 
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [text, setText] = useState("");
-  const [list, setList] = useState([]);
-
   const today = new Date();
-  const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  const dateTime = date + " " + time;
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  const dateTime = date + ' ' + time;
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [text, setText] = useState('');
+
+  const [list, setList] = useState([]);
 
   // Get all data and send it again to array(list)
   useEffect(() => {
-    const dataFromLocal = localStorage.getItem("Allcomments");
+    const dataFromLocal = localStorage.getItem('Allcomments');
     if (dataFromLocal) {
       setList(JSON.parse(dataFromLocal));
     } else {
-      return [];
+      setList([]);
     }
   }, []);
 
   // We need to use Use effect to send data immediately
   useEffect(() => {
-    localStorage.setItem("Allcomments", JSON.stringify(list));
+    localStorage.setItem('Allcomments', JSON.stringify(list));
   }, [list]);
 
   const addToList = (e) => {
@@ -42,9 +43,9 @@ function App() {
       },
     ]);
     //Clean
-    setName("");
-    setEmail("");
-    setText("");
+    setName('');
+    setEmail('');
+    setText('');
   };
 
   const removeData = (id) => {
@@ -55,8 +56,7 @@ function App() {
   return (
     <div>
       <AppContext.Provider
-        value={{ addToList, setName, name, setEmail, email, setText, text, list, removeData }}
-      >
+        value={{ addToList, setName, name, setEmail, email, setText, text, list, removeData }}>
         <Feedback />
         <Form />
       </AppContext.Provider>

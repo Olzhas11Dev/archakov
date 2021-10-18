@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import {
   Box,
   ListItem,
@@ -7,17 +7,16 @@ import {
   ListItemText,
   Typography,
   Button,
-} from "@mui/material";
-import { AppContext } from "../context";
+} from '@mui/material';
+import { AppContext } from '../context';
 
 function Feedback() {
   const { list, removeData } = useContext(AppContext);
-  console.log(list);
 
   return (
     <div>
-      <Box sx={{ width: "100%", maxWidth: 500, margin: " 20px auto" }}>
-        <Typography sx={{ mb: "40px" }} variant="h4">
+      <Box sx={{ width: '100%', maxWidth: 500, margin: ' 20px auto' }}>
+        <Typography sx={{ mb: '40px' }} variant="h4">
           Feedback:
         </Typography>
         {list.map((item) => {
@@ -30,16 +29,15 @@ function Feedback() {
                 primary={item.fullName}
                 secondary={
                   <Typography
-                    sx={{ display: "inline" }}
+                    sx={{ display: 'inline' }}
                     component="span"
                     variant="body2"
-                    color="text.primary"
-                  >
+                    color="text.primary">
                     {item.text}
                   </Typography>
                 }
               />
-              <Typography sx={{ marginRight: "20px", fontSize: "12px" }}>
+              <Typography sx={{ marginRight: '20px', fontSize: '12px' }}>
                 {item.createdAt}
               </Typography>
               <Button variant="contained" onClick={(e) => removeData(item.id)}>
